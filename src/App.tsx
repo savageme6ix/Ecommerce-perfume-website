@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Home';
 import Wishlist from './Wishlist';
 import Perfumes from './Perfumes';
-import Navbar from './Navbar';
 
 function App() {
 
