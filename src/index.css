@@ -1,2 +1,18 @@
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
+
+@theme {
+  /* This creates 'font-serif' and 'font-sans' utilities */
+  --font-serif: "Playfair Display", serif;
+  --font-sans: "Inter", sans-serif;
+  
+  /* You can also add custom luxury colors here */
+  --color-gold: #d4af37;
+  --color-onyx: #353935;
+}
+
+.navbar{
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}

@@ -1,15 +1,20 @@
 import { Link } from 'react-router-dom';
+
 const Navbar = () => {
   return (
-    <nav>
-      <Link to="/">Home</Link>
+    <nav className=' navbar flex justify-between items-center p-6 bg-white shadow-sm'>
+      
+      <Link to="/" className="text-xl tracking-widest uppercase">
+        Home
+      </Link>
 
-      <div>
-      <Link to="/perfumes">Perfumes</Link>
-      <Link to="/wishlist">Wishlist</Link>
+      <div className='flex gap-8'>
+        <Link to="/perfumes" className="  hover:text-gray-600 transition tracking-widest">Perfumes</Link>
+        <Link to="/wishlist" className="hover:text-gray-600 transition tracking-widest">Wishlist</Link>
       </div>
+      
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

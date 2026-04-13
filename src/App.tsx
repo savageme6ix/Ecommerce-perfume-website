@@ -2,11 +2,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Home from './Home';
 import Wishlist from './Wishlist';
 import Perfumes from './Perfumes';
+import Navbar from './Navbar';
 
 function App() {
 
   return (
-    <>
+    <div>
      <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -14,7 +15,7 @@ function App() {
         <Route path="/perfumes" element={<Perfumes />} />
       </Routes>
      </BrowserRouter>
-    </>
+    </div>
   )
 }
 
