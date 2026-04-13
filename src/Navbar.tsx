@@ -2,8 +2,7 @@ import { Link } from 'react-router-dom';
 
 const Navbar = () => {
   return (
-    <nav className=' navbar flex justify-between items-center p-6 bg-[#F5F5F0] shadow-sm'>
-      
+    <nav className=' navbar flex justify-between items-center p-6 bg-[#F5F5F0] shadow-sm font-body'>
       <Link to="/" className="text-xl tracking-widest uppercase">
         Home
       </Link>
