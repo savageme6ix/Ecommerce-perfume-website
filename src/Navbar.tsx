@@ -10,6 +10,7 @@ const Navbar = () => {
       <div className='flex gap-8'>
         <Link to="/perfumes" className="  hover:text-gray-600 transition tracking-widest">Perfumes</Link>
         <Link to="/wishlist" className="hover:text-gray-600 transition tracking-widest">Wishlist</Link>
+        <Link to="/cart" className="hover:text-gray-600 transition tracking-widest">Cart</Link>
       </div>
       
     </nav>
