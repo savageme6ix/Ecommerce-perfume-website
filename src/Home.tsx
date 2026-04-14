@@ -11,26 +11,58 @@ const Home = () => {
           Welcome to luxury you can actually wear.
         </h1>
 
-        <img src="/sunDrawing.jpg" alt="sun"
-          className="absolute w-[250px] lg:w-[300px] top-10 left-20 lg:left-10 rotate-[-10deg] z-0 rounded-2xl shadow-xl transition-transform hover:scale-105 duration-300
-          hidden md:hidden" 
-        />
+     <img
+      src="/sunDrawing.jpg"
+      alt="sun"
+      className="
+        absolute w-[250px] lg:w-[300px]
+        top-10 left-20 lg:left-10
+        rotate-[-10deg] opacity-100
+        z-0 rounded-2xl shadow-xl
+        transition-transform hover:scale-105 duration-300
+
+        max-[1262px]:rotate-0
+        max-[1195px]:hidden
+      "
+    />
 
     
-        <img src="/happy.jpg" alt="happy"
-          className="absolute w-[250px] lg:w-[300px] bottom-10 right-10 rotate-[8deg] z-20 rounded-2xl shadow-xl transition-transform hover:scale-105 duration-300
-          hidden md:block opacity-[80%]"
-        />
-        
-        <img src="/blur.jpg" alt="blur"
-          className="absolute w-[200px] lg:w-[280px] top-10 right-20 rotate-[-5deg] z-0 opacity-60 rounded-2xl shadow-xl transition-transform hover:scale-105 duration-300
-          hidden lg:block w-[280px]"
-        />
+    <img
+      src="/happy.jpg"
+      alt="happy"
+      className="
+        absolute w-[250px] lg:w-[300px]
+        bottom-10 right-10
+        rotate-[8deg]
+        z-20 rounded-2xl shadow-xl
+        transition-transform hover:scale-105 duration-300
+        opacity-80 lg:opacity-80 xl:opacity-100
 
-        {/* <img src="/heart.jpg" alt="heart"
-          className="absolute w-[300px] top-1/2 left-1/4 -translate-y-1/2 rotate-[-25deg] z-0 opacity-20 rounded-2xl
-          hidden xl:block"
-        /> */}
+        max-[1158px]:hidden
+      "
+  />
+        
+    <img
+    src="/blur.jpg"
+    alt="blur"
+    className="
+      absolute w-[200px] lg:w-[280px]
+      top-10 right-20
+      rotate-[-5deg]
+      z-0 opacity-60
+      rounded-2xl shadow-xl
+      transition-transform hover:scale-105 duration-300
+      xl:opacity-[100]
+
+      max-[1195px]:top-90
+      max-[1195px]:opacity-[80%]
+      max-[1158px]:hidden
+      max-[1195px]:left-15
+      max-[1195px]:right-auto
+      max-[1195px]:opacity-100
+    "
+  />
+
       </div>
     </main>
   );
