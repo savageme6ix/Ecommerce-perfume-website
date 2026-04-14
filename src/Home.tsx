@@ -1,3 +1,4 @@
+import FeaturedCollection from "./FeaturedCollection";
 import Navbar from "./Navbar";
 const Home = () => {
   return (
@@ -64,6 +65,7 @@ const Home = () => {
   />
 
       </div>
+      <FeaturedCollection />
     </main>
   );
 };
