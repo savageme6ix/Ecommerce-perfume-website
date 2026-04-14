@@ -1,9 +1,10 @@
 import FeaturedCollection from "./FeaturedCollection";
+import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Testimonials from "./Testimonials";
 const Home = () => {
   return (
-    <main>
+    <main className="bg-[#F5F5F0]">
       <Navbar />
       <div className="w-full h-[600px] relative flex items-center justify-center overflow-hidden bg-[#F5F5F0] mt-0.5">
         
@@ -68,6 +69,7 @@ const Home = () => {
       </div>
       <FeaturedCollection />
       <Testimonials />
+      <Footer />
     </main>
   );
 };
