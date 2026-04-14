@@ -15,21 +15,39 @@ const FeaturedCollection = () => {
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-6">
   
     <div className="bg-white p-4 rounded-2xl shadow hover:shadow-lg transition">
-        <img src="/bottle1.jpeg" className="rounded-xl mb-4" />
+        <div className="w-full h-[250px] overflow-hidden rounded-xl mb-4">
+            <img 
+            src="/bottle1.jpeg" 
+            className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+            />
+       </div>
         <h3 className="font-medium">N5 Channel</h3>
         <p className="text-gray-500 text-sm">$120</p>
+        <button className="px-6 py-3 mt-3 bg-black text-white rounded-full hover:bg-gray-800 transition">Add to cart</button>
     </div>
 
     <div className="bg-white p-4 rounded-2xl shadow hover:shadow-lg transition">
-        <img src="/bottle2.jpeg" className="rounded-xl mb-4 h-[300px] w-[400px] object-cover" />
+        <div className="w-full h-[250px] overflow-hidden rounded-xl mb-4">
+            <img 
+            src="/bottle2.jpeg" 
+            className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+            />
+       </div>
         <h3 className="font-medium">Opus</h3>
         <p className="text-gray-500 text-sm">$95</p>
+       <button className="px-6 py-3 mt-3 bg-black text-white rounded-full hover:bg-gray-800 transition">Add to cart</button>
     </div>
 
     <div className="bg-white p-4 rounded-2xl shadow hover:shadow-lg transition">
-        <img src="/bottle3.jpeg" className="rounded-xl mb-4" />
+        <div className="w-full h-[250px] overflow-hidden rounded-xl mb-4">
+            <img 
+            src="/bottle3.jpeg" 
+            className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+            />
+       </div>
         <h3 className="font-medium">Gabrielle</h3>
         <p className="text-gray-500 text-sm">$110</p>
+        <button className="px-6 py-3 mt-3 bg-black text-white rounded-full hover:bg-gray-800 transition">Add to cart</button>
     </div>
 
     </div>
