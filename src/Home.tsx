@@ -1,5 +1,6 @@
 import FeaturedCollection from "./FeaturedCollection";
 import Navbar from "./Navbar";
+import Testimonials from "./Testimonials";
 const Home = () => {
   return (
     <main>
@@ -66,6 +67,7 @@ const Home = () => {
 
       </div>
       <FeaturedCollection />
+      <Testimonials />
     </main>
   );
 };
