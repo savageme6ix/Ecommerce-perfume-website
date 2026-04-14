@@ -1,5 +1,16 @@
-
+import { useEffect, useState } from 'react';
+import { supabase } from './lib/supabase';
 const FeaturedCollection = () => {
+    const [perfumes, setPerfumes] = useState<any[]>([]);
+    useEffect(()=>{
+        const fetchPerfumes = async ()=>{
+            const { data, error } = await supabase.from('Perfumes').select('*');
+            if(data) setPerfumes(data);
+            if (error) console.error("Error fetching:", error);
+        };
+
+        fetchPerfumes();
+    },[]);
   return (
  <section className="py-16 bg-[#F5F5F0] text-center">
     <p className="text-sm tracking-widest text-gray-500 mb-2">
@@ -13,43 +24,18 @@ const FeaturedCollection = () => {
     </p>
 
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-6">
-  
-    <div className="bg-white p-4 rounded-2xl shadow hover:shadow-lg transition">
-        <div className="w-full h-[250px] overflow-hidden rounded-xl mb-4">
-            <img 
-            src="/bottle1.jpeg" 
-            className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-            />
-       </div>
-        <h3 className="font-medium">N5 Channel</h3>
-        <p className="text-gray-500 text-sm">$120</p>
-        <button className="px-6 py-3 mt-3 bg-black text-white rounded-full hover:bg-gray-800 transition">Add to cart</button>
-    </div>
-
-    <div className="bg-white p-4 rounded-2xl shadow hover:shadow-lg transition">
-        <div className="w-full h-[250px] overflow-hidden rounded-xl mb-4">
-            <img 
-            src="/bottle2.jpeg" 
-            className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-            />
-       </div>
-        <h3 className="font-medium">Opus</h3>
-        <p className="text-gray-500 text-sm">$95</p>
-       <button className="px-6 py-3 mt-3 bg-black text-white rounded-full hover:bg-gray-800 transition">Add to cart</button>
-    </div>
-
-    <div className="bg-white p-4 rounded-2xl shadow hover:shadow-lg transition">
-        <div className="w-full h-[250px] overflow-hidden rounded-xl mb-4">
-            <img 
-            src="/bottle3.jpeg" 
-            className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-            />
-       </div>
-        <h3 className="font-medium">Gabrielle</h3>
-        <p className="text-gray-500 text-sm">$110</p>
-        <button className="px-6 py-3 mt-3 bg-black text-white rounded-full hover:bg-gray-800 transition">Add to cart</button>
-    </div>
-
+        {perfumes.map((item) => (
+          <div key={item.id} className="bg-white p-4 rounded-2xl shadow hover:shadow-lg transition">
+            <div className="w-full h-[250px] overflow-hidden rounded-xl mb-4">
+              <img src={item.image} alt={item.name} className="w-full h-full object-cover hover:scale-110 transition duration-500" />
+            </div>
+            <h3 className="font-medium">{item.name}</h3>
+            <p className="text-gray-500 text-sm">${item.price}</p>
+            <button className="px-6 py-3 mt-3 bg-black text-white rounded-full hover:bg-gray-800 transition">
+              Add to cart
+            </button>
+          </div>
+        ))}
     </div>
     <div className="mt-10">
     <button className="px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition">
