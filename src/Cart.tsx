@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import { useCartStore } from "./store/useCartStore";
 
 const Cart = () => {
-  const { cart, updateQuantity, removeFromCart } = useCartStore();
+  const { cart, updateQuantity, removeFromCart, clearCart } = useCartStore();
   const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
   const shipping = cart.length > 0 ? 10 : 0;
   const grandTotal = subtotal + shipping;
@@ -85,6 +85,7 @@ const Cart = () => {
             <button className="w-full mt-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition">
               Checkout
             </button>
+            <button className=" w-full px-6 py-3 mt-3 rounded-full transition bg-red-700 text-white hover:bg-red-800" onClick={() => clearCart()}>Clear Cart</button>
           </div>
         </div>
       </section>
