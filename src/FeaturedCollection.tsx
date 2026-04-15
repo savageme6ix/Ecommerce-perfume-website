@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Perfume } from "./types";
+import { useCartStore } from "./store/useCartStore";
 
 interface FeaturedCollectionProps {
   perfumes: Perfume[];
