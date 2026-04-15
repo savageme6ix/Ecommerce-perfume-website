@@ -1,23 +1,7 @@
 import FeaturedCollection from "./FeaturedCollection";
-import Footer from "./Footer";
 import Navbar from "./Navbar";
-import Testimonials from "./Testimonials";
-import { useEffect, useState } from 'react';
-import { supabase } from './lib/supabase';
-import type { Perfume } from "./types";
 
 const Home = () => {
-
-  const [perfumes, setPerfumes] = useState<Perfume[]>([]);
-    useEffect(()=>{
-        const fetchPerfumes = async ()=>{
-            const { data, error } = await supabase.from('Perfumes').select('*');
-            if(data) setPerfumes(data);
-            if (error) console.error("Error fetching:", error);
-        };
-
-        fetchPerfumes();
-    },[]);
 
   return (
     <main className="bg-[#F5F5F0]">
@@ -83,9 +67,6 @@ const Home = () => {
   />
 
       </div>
-      <FeaturedCollection perfumes={perfumes}/>
-      <Testimonials />
-      <Footer />
     </main>
   );
 };

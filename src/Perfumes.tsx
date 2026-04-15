@@ -1,5 +1,10 @@
+import type { Perfume } from "./types";
 
-const Perfumes = () => {
+interface FeaturedCollectionProps {
+  perfumes: Perfume[];
+}
+
+const Perfumes = ({ perfumes }: FeaturedCollectionProps) => {
   return (
     <div>Perfumes</div>
   )
