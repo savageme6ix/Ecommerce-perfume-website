@@ -40,7 +40,7 @@ const Testimonials = () => {
           </p>
 
         </div>
-        <div className="bg-[#E7E7E0] rounded-2xl p-6 shadow-sm hover:shadow-md transition h-full flex flex-col justify-between">
+        <div className="hidden sm:block bg-[#E7E7E0] rounded-2xl p-6 shadow-sm hover:shadow-md transition h-full flex flex-col justify-between">
           
           <div className="flex items-center gap-3 mb-4">
             <img
@@ -62,7 +62,7 @@ const Testimonials = () => {
           </p>
 
         </div>
-        <div className="bg-[#E7E7E0] rounded-2xl p-6 shadow-sm hover:shadow-md transition h-full flex flex-col justify-between">
+        <div className="hidden md:block bg-[#E7E7E0] rounded-2xl p-6 shadow-sm hover:shadow-md transition h-full flex flex-col justify-between">
           
           <div className="flex items-center gap-3 mb-4">
             <img
@@ -84,7 +84,7 @@ const Testimonials = () => {
           </p>
 
         </div>
-        <div className="bg-[#E7E7E0] rounded-2xl p-6 shadow-sm hover:shadow-md transition h-full flex flex-col justify-between">
+        <div className="hidden md:block bg-[#E7E7E0] rounded-2xl p-6 shadow-sm hover:shadow-md transition h-full flex flex-col justify-between">
           
           <div className="flex items-center gap-3 mb-4">
             <img
@@ -106,7 +106,7 @@ const Testimonials = () => {
           </p>
 
         </div>
-        <div className="bg-[#E7E7E0] rounded-2xl p-6 shadow-sm hover:shadow-md transition h-full flex flex-col justify-between">
+        <div className="hidden md:block bg-[#E7E7E0] rounded-2xl p-6 shadow-sm hover:shadow-md transition h-full flex flex-col justify-between">
           
           <div className="flex items-center gap-3 mb-4">
             <img
@@ -128,7 +128,7 @@ const Testimonials = () => {
           </p>
 
         </div>
-        <div className="bg-[#E7E7E0] rounded-2xl p-6 shadow-sm hover:shadow-md transition h-full flex flex-col justify-between">
+        <div className="hidden md:block bg-[#E7E7E0] rounded-2xl p-6 shadow-sm hover:shadow-md transition h-full flex flex-col justify-between">
           
           <div className="flex items-center gap-3 mb-4">
             <img
