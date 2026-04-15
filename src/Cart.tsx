@@ -1,45 +1,10 @@
 import Navbar from "./Navbar";
 import { useState } from "react";
+import { useCartStore } from "./store/useCartStore";
+
 const Cart = () => {
-  type CartItem = {
-    id: number;
-    name: string;
-    brand: string;
-    price: number;
-    quantity: number;
-    image: string;
-  };
+  const { cart, updateQuantity, removeFromCart } = useCartStore();
 
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    {
-      id: 1,
-      name: "N5 Channel",
-      brand: "Channel",
-      price: 125,
-      quantity: 2,
-      image: "/bottle3.jpeg",
-    },
-  ]);
-
-  function increaseQty(id: number): void {
-  setCartItems((prev) =>
-    prev.map((item) =>
-      item.id === id
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
-    )
-  );
-}
-
-function decreaseQty(id: number): void {
-  setCartItems((prev) =>
-    prev.map((item) =>
-      item.id === id && item.quantity > 1
-        ? { ...item, quantity: item.quantity - 1 }
-        : item
-    )
-  );
-}
   return (
     <div>
       <Navbar />
@@ -49,7 +14,7 @@ function decreaseQty(id: number): void {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2 flex flex-col gap-6">
             {/* Repeat this card */}
-            {cartItems.map((item) => (
+            {cart.map((item) => (
               <div
                 key={item.id}
                 className="bg-white rounded-2xl shadow-md p-6 flex gap-6 items-center"
@@ -70,7 +35,7 @@ function decreaseQty(id: number): void {
                   {/* Quantity Controls */}
                   <div className="flex items-center gap-3 mt-2">
                     <button
-                      onClick={() => decreaseQty(item.id)}
+                      onClick={() => updateQuantity(item.id,-1)}
                       className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300"
                     >
                       -
@@ -79,7 +44,7 @@ function decreaseQty(id: number): void {
                     <span className="font-medium">{item.quantity}</span>
 
                     <button
-                      onClick={() => increaseQty(item.id)}
+                      onClick={() => updateQuantity(item.id,1)}
                       className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300"
                     >
                       +

@@ -9,6 +9,8 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
   const [count, setCount] = useState<Record<number, number>>({});
   const [isAdded, setisAdded] = useState<Record<number, string>>({});
 
+  const addToCart = useCartStore((state)=>state.addToCart);
+
   function added(id: number): void {
     setisAdded((prev) => ({ ...prev, [id]: "Added" }));
     setTimeout(() => {
@@ -68,6 +70,7 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
                   if (count[item.id] > 1) {
                     setCount((prev) => ({ ...prev, [item.id]: 1 }));
                   }
+                  addToCart(item)
                 }}
               >
                 {isAdded[item.id] ?? "Add to cart"}
