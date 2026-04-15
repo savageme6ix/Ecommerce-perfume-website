@@ -1,16 +1,10 @@
-import { useEffect, useState } from 'react';
-import { supabase } from './lib/supabase';
-const FeaturedCollection = () => {
-    const [perfumes, setPerfumes] = useState<any[]>([]);
-    useEffect(()=>{
-        const fetchPerfumes = async ()=>{
-            const { data, error } = await supabase.from('Perfumes').select('*');
-            if(data) setPerfumes(data);
-            if (error) console.error("Error fetching:", error);
-        };
+import type { Perfume } from "./types";
 
-        fetchPerfumes();
-    },[]);
+interface FeaturedCollectionProps{
+  perfumes:Perfume[];
+}
+const FeaturedCollection = ({perfumes}: FeaturedCollectionProps) => {
+    
   return (
  <section className="py-16 bg-[#F5F5F0] text-center">
     <p className="text-sm tracking-widest text-gray-500 mb-2">
