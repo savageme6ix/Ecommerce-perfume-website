@@ -4,7 +4,9 @@ import { useCartStore } from "./store/useCartStore";
 
 const Cart = () => {
   const { cart, updateQuantity, removeFromCart } = useCartStore();
-
+  const subtotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+  const shipping = cart.length > 0 ? 10 : 0;
+  const grandTotal = subtotal + shipping;
   return (
     <div>
       <Navbar />
@@ -66,7 +68,7 @@ const Cart = () => {
 
             <div className="flex justify-between text-gray-600 mb-2">
               <span>Subtotal</span>
-              <span>$250</span>
+              <span>{subtotal.toLocaleString()}</span>
             </div>
 
             <div className="flex justify-between text-gray-600 mb-4">
@@ -76,7 +78,7 @@ const Cart = () => {
 
             <div className="border-t pt-4 flex justify-between font-semibold text-lg">
               <span>Total</span>
-              <span>$260</span>
+              <span>{grandTotal}</span>
             </div>
 
             <button className="w-full mt-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition">
