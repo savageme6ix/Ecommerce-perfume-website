@@ -1,5 +1,5 @@
 import Navbar from "./Navbar";
-import { useState } from "react";
+
 import { useCartStore } from "./store/useCartStore";
 
 const Cart = () => {
@@ -33,6 +33,7 @@ const Cart = () => {
                   <p className="text-sm text-gray-500">Brand: {item.brand}</p>
 
                   {/* Quantity Controls */}
+                  <div className="flex items-center justify-evenly gap-5">
                   <div className="flex items-center gap-3 mt-2">
                     <button
                       onClick={() => updateQuantity(item.id,-1)}
@@ -50,7 +51,8 @@ const Cart = () => {
                       +
                     </button>
                   </div>
-
+                  <button className="px-6 py-3 mt-3 rounded-full transition w-[120px] h-[50px] bg-black text-white hover:bg-gray-800" onClick={()=> removeFromCart(item.id)}>Remove</button>
+                  </div>
                   {/* Total */}
                   <p className="font-semibold mt-2">
                     ${item.price * item.quantity}
