@@ -62,7 +62,12 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
                     ? "bg-green-500 text-white hover:bg-green-600"
                     : "bg-black text-white hover:bg-gray-800"
                 }`}
-                onClick={() => added(item.id)}
+                onClick={() => {
+                  added(item.id);
+                  if (count[item.id] > 1) {
+                    setCount((prev) => ({ ...prev, [item.id]: 1 }));
+                  }
+                }}
               >
                 {isAdded[item.id] ?? "Add to cart"}
               </button>
