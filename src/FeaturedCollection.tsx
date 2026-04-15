@@ -44,7 +44,7 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-6">
-        {perfumes.map((item) => (
+        {perfumes.slice(0,3).map((item) => (
           <div
             key={item.id}
             className="bg-white p-4 rounded-2xl shadow hover:shadow-lg transition"
