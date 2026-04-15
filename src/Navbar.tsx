@@ -5,7 +5,7 @@ const Navbar = () => {
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <nav className=' navbar flex justify-between items-center p-6 bg-[#F5F5F0] shadow-sm font-body'>
+    <nav className=' sticky top-0 z-50 navbar flex justify-between items-center p-6 bg-[#F5F5F0] shadow-sm font-body'>
       <Link to="/" className="text-xl tracking-widest uppercase">
         Home
       </Link>
