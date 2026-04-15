@@ -4,4 +4,5 @@ export interface Perfume{
     brand:string;
     price:number;
     image:string;
+    quantiy:number;
   }
