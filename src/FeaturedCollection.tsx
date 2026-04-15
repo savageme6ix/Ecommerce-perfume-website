@@ -25,9 +25,29 @@ const FeaturedCollection = ({perfumes}: FeaturedCollectionProps) => {
             </div>
             <h3 className="font-medium">{item.name}</h3>
             <p className="text-gray-500 text-sm">${item.price}</p>
-            <button className="px-6 py-3 mt-3 bg-black text-white rounded-full hover:bg-gray-800 transition">
+
+            <div className="flex items-center justify-evenly">
+             <button className="px-6 py-3 mt-3 bg-black text-white rounded-full hover:bg-gray-800 transition">
               Add to cart
-            </button>
+             </button>
+              {/* Quantity Controls */}
+              <div className="flex items-center gap-3 mt-2">
+                    <button
+                      className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300"
+                    >
+                      -
+                    </button>
+
+                    <span className="font-medium">2</span>
+
+                    <button
+                      className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300"
+                    >
+                      +
+                    </button>
+              </div>
+            </div>
+
           </div>
         ))}
     </div>
