@@ -1,9 +1,25 @@
+import { useState } from "react";
 import type { Perfume } from "./types";
 
 interface FeaturedCollectionProps{
   perfumes:Perfume[];
 }
 const FeaturedCollection = ({perfumes}: FeaturedCollectionProps) => {
+  const [count, setCount] = useState<Record<number, number>>({});
+
+
+  function increaseCount(id: number) {
+  setCount(prev => (
+    { ...prev, [id]: (prev[id] ?? 1) + 1 }
+  ));
+ }
+ 
+  function decreaseCount(id: number) {
+  setCount(prev => {
+    if ((prev[id] ?? 1) <= 1) return prev;
+    return { ...prev, [id]: prev[id] - 1 };
+  });
+}
     
   return (
  <section className="py-16 bg-[#F5F5F0] text-center">
@@ -33,14 +49,16 @@ const FeaturedCollection = ({perfumes}: FeaturedCollectionProps) => {
               {/* Quantity Controls */}
               <div className="flex items-center gap-3 mt-2">
                     <button
+                      onClick={()=> decreaseCount(item.id)}
                       className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300"
                     >
                       -
                     </button>
 
-                    <span className="font-medium">2</span>
+                    <span className="font-medium">{count[item.id] ?? 1}</span>
 
                     <button
+                      onClick={()=> increaseCount(item.id)}
                       className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300"
                     >
                       +

@@ -83,7 +83,7 @@ const Home = () => {
   />
 
       </div>
-      <FeaturedCollection perfumes={perfumes} />
+      <FeaturedCollection perfumes={perfumes}/>
       <Testimonials />
       <Footer />
     </main>
