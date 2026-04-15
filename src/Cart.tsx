@@ -9,12 +9,12 @@ const Cart = () => {
     <div>
       <Navbar />
       <section className="bg-[#F5F5F0] min-h-screen px-6 md:px-12 lg:px-20 py-10 mt-0.5">
-        <h1 className="text-3xl md:text-4xl font-semibold mb-10">Your Cart</h1>
+        <h1 className="text-3xl md:text-4xl font-semibold mb-10">Your Cart:</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           <div className="lg:col-span-2 flex flex-col gap-6">
             {/* Repeat this card */}
-            {cart.map((item) => (
+            { cart.length > 0 ? cart.map((item) => (
               <div
                 key={item.id}
                 className="bg-white rounded-2xl shadow-md p-6 flex gap-6 items-center"
@@ -59,7 +59,7 @@ const Cart = () => {
                   </p>
                 </div>
               </div>
-            ))}
+            )) : <p className="text-6xl">Your Cart is Empty!</p>}
           </div>
           <div className="bg-white rounded-2xl shadow-md p-6 h-fit sticky top-20">
             <h2 className="text-xl font-semibold mb-6">Order Summary</h2>
