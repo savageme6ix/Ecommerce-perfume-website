@@ -80,6 +80,7 @@ const Cart = () => {
               <span>Total</span>
               <span>{grandTotal}</span>
             </div>
+            <p className="text-sm font-semibold">Taxes and duties included.</p>
 
             <button className="w-full mt-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition">
               Checkout
