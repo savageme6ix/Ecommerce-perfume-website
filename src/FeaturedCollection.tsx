@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Perfume } from "./types";
 import { useCartStore } from "./store/useCartStore";
+import { Link } from "react-router-dom";
 
 interface FeaturedCollectionProps {
   perfumes: Perfume[];
@@ -98,9 +99,9 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
         ))}
       </div>
       <div className="mt-10">
-        <button className="px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition">
+        <Link to="/perfumes" className="px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition">
           View Full Collection
-        </button>
+        </Link>
       </div>
     </section>
   );
