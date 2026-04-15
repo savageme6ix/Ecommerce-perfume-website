@@ -1,8 +1,8 @@
 import Navbar from "./Navbar";
 import { useState } from "react";
 import { useCartStore } from "./store/useCartStore";
-
 const Cart = () => {
+
   const { cart, updateQuantity, removeFromCart, clearCart } = useCartStore();
   const [showConfirm, setShowConfirm] = useState(false);
 
@@ -78,7 +78,7 @@ const Cart = () => {
                 </div>
               ))
             ) : (
-              <p className="text-6xl">Your Cart is Empty!</p>
+              <p className="text-2xl md:text-4xl">Your Cart is Empty!</p>
             )}
           </div>
 
@@ -94,7 +94,7 @@ const Cart = () => {
             </div>
             <div className="border-t pt-4 flex justify-between font-semibold text-lg">
               <span>Total</span>
-              <span>{grandTotal}</span>
+              <span>{grandTotal.toLocaleString()}</span>
             </div>
             <p className="text-sm font-semibold">Taxes and duties included.</p>
             <button className="w-full mt-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition">Checkout</button>
