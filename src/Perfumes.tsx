@@ -20,7 +20,7 @@ const Perfumes = () => {
     <div>
       <Navbar />
 
-      <section className="bg-[#F5F5F0] min-h-screen px-6 md:px-12 lg:px-20 py-12">
+      <section className="bg-[#F5F5F0] min-h-screen px-6 md:px-12 lg:px-20 py-12 mt-[0.5px]">
         
         {/* Heading */}
         <div className="text-center mb-12">
