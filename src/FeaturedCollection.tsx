@@ -10,6 +10,7 @@ interface FeaturedCollectionProps {
 const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
   const [count, setCount] = useState<Record<number, number>>({});
   const [isAdded, setisAdded] = useState<Record<number, string>>({});
+  const [liked, setLiked] = useState(false);
 
   const addToCart = useCartStore((state) => state.addToCart);
 
@@ -95,7 +96,14 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
                   +
                 </button>
               </div>
-              <FaHeart className="w-[30px] h-[30px] text-gray-400 hover:text-red-700 active:text-red-900 cursor-pointer transition" />
+              <FaHeart
+                onClick={() => setLiked(!liked)}
+                className={`w-[30px] h-[30px] cursor-pointer transition ${
+                  liked
+                    ? "fill-red-600 stroke-none"
+                    : "fill-gray-400 hover:fill-red-500 stroke-none"
+                }`}
+              />
             </div>
           </div>
         ))}
