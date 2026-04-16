@@ -14,7 +14,7 @@ interface CartItem {
 // Define the Store's structure (State + Actions)
 interface CartStore {
   cart: CartItem[];
-  addToCart: (product: any) => void;
+  addToCart: (product: any, quantity?: number) => void;
   removeFromCart: (id: number) => void;
   updateQuantity: (id: number, amount: number) => void;
   clearCart: () => void;
