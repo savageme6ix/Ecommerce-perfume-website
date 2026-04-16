@@ -10,7 +10,7 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
   const [count, setCount] = useState<Record<number, number>>({});
   const [isAdded, setisAdded] = useState<Record<number, string>>({});
 
-  const addToCart = useCartStore((state)=>state.addToCart);
+  const addToCart = useCartStore((state) => state.addToCart);
 
   function added(id: number): void {
     setisAdded((prev) => ({ ...prev, [id]: "Added" }));
@@ -44,7 +44,7 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
       </p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-6">
-        {perfumes.slice(0,3).map((item) => (
+        {perfumes.slice(0, 3).map((item) => (
           <div
             key={item.id}
             className="bg-white p-4 rounded-2xl shadow hover:shadow-lg transition"
@@ -63,15 +63,15 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
               <button
                 className={`px-6 py-3 mt-3 rounded-full transition w-[150px] ${
                   isAdded[item.id] === "Added"
-                    ? "bg-green-500 text-white hover:bg-green-600"
+                    ? "bg-green-500 text-white"
                     : "bg-black text-white hover:bg-gray-800"
                 }`}
                 onClick={() => {
+                  const currentQty = count[item.id] ?? 1;
+                  // Pass both the item AND the chosen quantity to the store
+                  addToCart(item, currentQty);
                   added(item.id);
-                  if (count[item.id] > 1) {
-                    setCount((prev) => ({ ...prev, [item.id]: 1 }));
-                  }
-                  addToCart(item)
+                  setCount((prev) => ({ ...prev, [item.id]: 1 }));
                 }}
               >
                 {isAdded[item.id] ?? "Add to cart"}
@@ -99,7 +99,10 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
         ))}
       </div>
       <div className="mt-10">
-        <Link to="/perfumes" className="px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition">
+        <Link
+          to="/perfumes"
+          className="px-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition"
+        >
           View Full Collection
         </Link>
       </div>
