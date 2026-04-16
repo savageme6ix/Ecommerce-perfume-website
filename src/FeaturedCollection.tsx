@@ -2,6 +2,7 @@ import { useState } from "react";
 import type { Perfume } from "./types";
 import { useCartStore } from "./store/useCartStore";
 import { Link } from "react-router-dom";
+import { FaHeart } from "react-icons/fa";
 
 interface FeaturedCollectionProps {
   perfumes: Perfume[];
@@ -94,6 +95,7 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
                   +
                 </button>
               </div>
+              <FaHeart className="w-[30px] h-[30px] text-gray-400 hover:text-red-700 active:text-red-900 cursor-pointer transition" />
             </div>
           </div>
         ))}
