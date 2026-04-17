@@ -10,10 +10,16 @@ interface FeaturedCollectionProps {
 const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
   const [count, setCount] = useState<Record<number, number>>({});
   const [isAdded, setisAdded] = useState<Record<number, string>>({});
-  const [liked, setLiked] = useState<Record<number,boolean>>({});
+  const [liked, setLiked] = useState<Record<number, boolean>>({});
+  const [animating, setAnimating] = useState<Record<number, boolean>>({});
 
-  function toggleLike(id:number):void{
-    setLiked((prev)=> ({...prev, [id]: !prev[id]}));
+  function toggleLike(id: number): void {
+    setLiked((prev) => ({ ...prev, [id]: !prev[id] }));
+    setAnimating((prev) => ({ ...prev, [id]: true }));
+
+    setTimeout(() => {
+      setAnimating((prev) => ({ ...prev, [id]: false }));
+    }, 250);
   }
 
   const addToCart = useCartStore((state) => state.addToCart);
@@ -104,9 +110,9 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
                 onClick={() => toggleLike(item.id)}
                 className={`w-[30px] h-[30px] cursor-pointer transition ${
                   liked[item.id]
-                    ? "fill-red-800 stroke-none"
-                    : "fill-gray-400 hover:fill-red-650 stroke-none"
-                }`}
+                    ? "text-red-800 stroke-none"
+                    : "text-gray-400 hover:text-red-650 stroke-none"
+                }  ${animating[item.id] ? "animate-pop" : ""} `}
               />
             </div>
           </div>

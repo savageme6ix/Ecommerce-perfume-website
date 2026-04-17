@@ -1,12 +1,6 @@
 @import "tailwindcss";
 @plugin "tailwindcss-animate";
 
-/* @theme {
-  --font-josefin: "Josefin Sans", sans-serif;
-  --font-montserrat: "Montserrat", sans-serif;
-  --font-roboto: "Roboto", sans-serif;
-  --font-gothic: "Science Gothic", sans-serif;
-} */
 @theme {
   --font-luxury: "Bodoni Moda", serif;
   --font-body: "Montserrat", sans-serif;
@@ -14,5 +8,24 @@
   --pinkish:#FFF1D3;
   --pink:#FFB090;
   --reddy:#FF3737;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.35);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.animate-pop {
+  animation: pop 0.25s ease-in-out;
 }
 
