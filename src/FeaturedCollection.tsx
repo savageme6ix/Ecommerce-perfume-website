@@ -14,7 +14,9 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
   const [liked, setLiked] = useState<Record<number, boolean>>({});
   const [animating, setAnimating] = useState<Record<number, boolean>>({});
   const [notif, setNotif] = useState<string | null>(null);
-  const { addToWishStore, removeFromWishStore } = usewishStore();
+  const { addToWishStore, removeFromWishStore , wish} = usewishStore();
+
+  const isLiked = (id:number) => wish.some((w) => w.id === id);
 
   function toggleLike(id: number): void {
     setLiked((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -112,23 +114,20 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
               <FaHeart
                 onClick={() => {
                 const currentQty = count[item.id] ?? 1;
-                const isCurrentlyLiked = liked[item.id];
 
-                toggleLike(item.id);
-
-                if (isCurrentlyLiked) {
+                if (isLiked(item.id)) {
                   setNotif("Removed from wishlist");
                   removeFromWishStore(item.id)
                 } else {
                   addToWishStore(item, currentQty);
                   setNotif("Added to wishlist");
                 }
-
+                toggleLike(item.id);
                 setTimeout(() => setNotif(null), 1500);
               }}
 
                 className={`w-[30px] h-[30px] cursor-pointer transition ${
-                  liked[item.id]
+                  isLiked(item.id)
                     ? "text-red-800 stroke-none"
                     : "text-gray-400 hover:text-red-650 stroke-none"
                 }  ${animating[item.id] ? "animate-pop" : ""} `}
