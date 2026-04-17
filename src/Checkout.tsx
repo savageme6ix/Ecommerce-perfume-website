@@ -40,6 +40,7 @@ const Checkout = () => {
     if (error) console.error("Checkout failed:", error.message);
     else{
         alert("Order placed successfully!");
+        setLoading(false)
         useCartStore.getState().clearCart();
     }
   };
