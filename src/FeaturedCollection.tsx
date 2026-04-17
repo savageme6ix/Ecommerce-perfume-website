@@ -12,6 +12,10 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
   const [isAdded, setisAdded] = useState<Record<number, string>>({});
   const [liked, setLiked] = useState<Record<number,boolean>>({});
 
+  function toggleLike(id:number):void{
+    setLiked((prev)=> ({...prev, [id]: !prev[id]}));
+  }
+
   const addToCart = useCartStore((state) => state.addToCart);
 
   function added(id: number): void {
@@ -97,9 +101,9 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
                 </button>
               </div>
               <FaHeart
-                onClick={() => setLiked(!liked)}
+                onClick={() => toggleLike(item.id)}
                 className={`w-[30px] h-[30px] cursor-pointer transition ${
-                  liked
+                  liked[item.id]
                     ? "fill-red-800 stroke-none"
                     : "fill-gray-400 hover:fill-red-650 stroke-none"
                 }`}
