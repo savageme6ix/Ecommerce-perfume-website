@@ -4,6 +4,7 @@ import { useCartStore } from "./store/useCartStore";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { usewishStore } from "./store/useWishStore";
+import { useRef } from "react";
 
 interface FeaturedCollectionProps {
   perfumes: Perfume[];
@@ -15,6 +16,7 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
   const [animating, setAnimating] = useState<Record<number, boolean>>({});
   const [notif, setNotif] = useState<string | null>(null);
   const { addToWishStore, removeFromWishStore , wish} = usewishStore();
+  const timeoutRefs = useRef<{ [key: number]:  ReturnType<typeof setTimeout> }>({});
 
   const isLiked = (id:number) => wish.some((w) => w.id === id);
 
@@ -30,10 +32,14 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
   const addToCart = useCartStore((state) => state.addToCart);
 
   function added(id: number): void {
+    if (timeoutRefs.current[id]) {
+    clearTimeout(timeoutRefs.current[id]);
+  }
     setisAdded((prev) => ({ ...prev, [id]: "Added" }));
-    setTimeout(() => {
-      setisAdded((prev) => ({ ...prev, [id]: "Add to cart" }));
-    }, 1000);
+    timeoutRefs.current[id] = setTimeout(() => {
+    setisAdded((prev) => ({ ...prev, [id]: "Add to cart" }));
+    delete timeoutRefs.current[id]; // Clean up ref
+  }, 1000);
   }
 
   function increaseCount(id: number) {
