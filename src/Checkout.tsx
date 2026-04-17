@@ -1,6 +1,20 @@
 import Navbar from "./Navbar";
 
 const Checkout = () => {
+
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>, itemId:number )=>{
+        e.preventDefault();
+        const form = e.currentTarget.closest('form');
+        if(!form) return;
+        const formData = new FormData(form);
+
+        const customer = formData.get('customer') as string
+        const email = formData.get('email') as string
+        const phone = formData.get('phone') as string
+        const location = formData.get('location') as string
+        const id = itemId
+    }
+
   return (
     <div>
       <Navbar />
