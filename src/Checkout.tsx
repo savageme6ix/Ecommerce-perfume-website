@@ -1,33 +1,47 @@
 import Navbar from "./Navbar";
 import { supabase } from "./lib/supabase";
-
+import { useCartStore } from "./store/useCartStore";
+import { useState } from "react";
 const Checkout = () => {
+  const [loading, setLoading] = useState(false);
+  const { cart } = useCartStore();
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true)
+    e.preventDefault();
+    const formData = new FormData(e.currentTarget);
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>, itemId:number )=>{
-        e.preventDefault();
-        const form = e.currentTarget.closest('form');
-        if(!form) return;
-        const formData = new FormData(form);
+    const orderData = {
+      customer: formData.get("customer") as string,
+      email: formData.get("email") as string,
+      phone: formData.get("phone") as string,
+      location: formData.get("location") as string,
+      items: cart.map((item) => ({
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        quantity: item.quantity,
+      })),
+    };
 
-        const orderData = {
-         customer: formData.get('customer') as string,
-         email: formData.get('email') as string,
-         phone: formData.get('phone') as string,
-         location: formData.get('location') as string,
-         id: itemId,
-        }
-         
-        
+    if (!orderData.customer || !orderData.email) {
+      alert("Please fill in required fields");
+      return;
     }
+
+    const { error } = await supabase.from("Orders").insert([orderData]);
+    if (error) console.error("Checkout failed:", error.message);
+    else{
+        alert("Order placed successfully!");
+        useCartStore.getState().clearCart();
+    }
+  };
 
   return (
     <div>
       <Navbar />
 
       <section className="bg-[#F5F5F0] min-h-screen px-6 md:px-12 lg:px-20 py-12 flex justify-center">
-        
         <div className="w-full max-w-4xl bg-white rounded-3xl shadow-lg p-8 md:p-12">
-          
           {/* Heading */}
           <div className="mb-10 text-center">
             <h1 className="text-3xl md:text-4xl font-semibold mb-2">
@@ -39,8 +53,10 @@ const Checkout = () => {
           </div>
 
           {/* Form */}
-          <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
+          <form
+            onSubmit={handleSubmit}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
+          >
             {/* Full Name */}
             <div className="flex flex-col gap-2">
               <label className="text-sm text-gray-700">Full Name</label>
@@ -90,15 +106,14 @@ const Checkout = () => {
 
             {/* Button (full width) */}
             <button
+              disabled={loading}
               type="submit"
               className="md:col-span-2 w-full py-4 bg-black text-white rounded-full text-lg hover:bg-gray-800 transition"
             >
-              Buy Product
+              {loading ? "Processing..." : "Buy Product"}
             </button>
-
           </form>
         </div>
-
       </section>
     </div>
   );
