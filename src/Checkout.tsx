@@ -1,4 +1,5 @@
 import Navbar from "./Navbar";
+import { supabase } from "./lib/supabase";
 
 const Checkout = () => {
 
@@ -8,11 +9,15 @@ const Checkout = () => {
         if(!form) return;
         const formData = new FormData(form);
 
-        const customer = formData.get('customer') as string
-        const email = formData.get('email') as string
-        const phone = formData.get('phone') as string
-        const location = formData.get('location') as string
-        const id = itemId
+        const orderData = {
+         customer: formData.get('customer') as string,
+         email: formData.get('email') as string,
+         phone: formData.get('phone') as string,
+         location: formData.get('location') as string,
+         id: itemId,
+        }
+         
+        
     }
 
   return (
