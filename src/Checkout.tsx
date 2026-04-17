@@ -2,25 +2,25 @@ import Navbar from "./Navbar";
 import { supabase } from "./lib/supabase";
 import { useCartStore } from "./store/useCartStore";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
   const [loading, setLoading] = useState(false);
-  
+  const [showToast, setShowToast] = useState(false); // Toast state
   const { cart } = useCartStore();
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    setLoading(true)
+    setLoading(true);
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
     const grandTotal = cart.reduce((acc, item) => {
-        return acc + (item.price * item.quantity);
+      return acc + item.price * item.quantity;
     }, 0);
 
-     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+    const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
     const orderData = {
       customer: formData.get("customer") as string,
@@ -44,19 +44,57 @@ const Checkout = () => {
 
     const { error } = await supabase.from("Orders").insert([orderData]);
     if (error) console.error("Checkout failed:", error.message);
-    else{
-        alert("Order placed successfully!");
-        setLoading(false)
-        useCartStore.getState().clearCart();
-        setTimeout(()=>{
-            navigate('/')
-        },1000)
+    else {
+      setLoading(false);
+      setShowToast(true);
+      useCartStore.getState().clearCart();
+      setTimeout(()=>{
+          navigate('/')
+      },3000)
     }
   };
 
   return (
     <div>
       <Navbar />
+
+      {showToast && (
+        <div className="fixed top-6 md:top-10 left-1/2 -translate-x-1/2 z-50 w-[90%] md:w-auto min-w-max animate-bounce-in">
+          <div
+            className="bg-white/80 backdrop-blur-md border border-amber-200 
+                    px-5 py-3 md:px-8 md:py-4 
+                    rounded-2xl md:rounded-full 
+                    shadow-2xl flex items-center gap-3 md:gap-4"
+          >
+            {/* Icon - Slightly smaller on mobile */}
+            <div className="shrink-0 w-8 h-8 md:w-10 md:h-10 bg-black rounded-full flex items-center justify-center">
+              <svg
+                className="w-4 h-4 md:w-5 md:h-5 text-amber-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+            </div>
+
+            {/* Text Content */}
+            <div className="whitespace-nowrap">
+              <h3 className="text-black italic text-base md:text-lg leading-none">
+                Order Placed
+              </h3>
+              <p className="text-gray-500 text-[10px] md:text-xs tracking-[0.15em] md:tracking-widest uppercase mt-1">
+                Your scent is being prepared
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       <section className="bg-[#F5F5F0] min-h-screen px-6 md:px-12 lg:px-20 py-12 flex justify-center">
         <div className="w-full max-w-4xl bg-white rounded-3xl shadow-lg p-8 md:p-12">
