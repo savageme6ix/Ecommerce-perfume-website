@@ -2,9 +2,15 @@ import Navbar from "./Navbar";
 import { supabase } from "./lib/supabase";
 import { useCartStore } from "./store/useCartStore";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
 const Checkout = () => {
   const [loading, setLoading] = useState(false);
+  
   const { cart } = useCartStore();
+
+    const navigate = useNavigate();
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     setLoading(true)
     e.preventDefault();
@@ -42,6 +48,9 @@ const Checkout = () => {
         alert("Order placed successfully!");
         setLoading(false)
         useCartStore.getState().clearCart();
+        setTimeout(()=>{
+            navigate('/')
+        },1000)
     }
   };
 
