@@ -3,6 +3,7 @@ import type { Perfume } from "./types";
 import { useCartStore } from "./store/useCartStore";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
+import { usewishStore } from "./store/useWishStore";
 
 interface FeaturedCollectionProps {
   perfumes: Perfume[];
@@ -12,6 +13,7 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
   const [isAdded, setisAdded] = useState<Record<number, string>>({});
   const [liked, setLiked] = useState<Record<number, boolean>>({});
   const [animating, setAnimating] = useState<Record<number, boolean>>({});
+  const {addToWishStore} = usewishStore();
 
   function toggleLike(id: number): void {
     setLiked((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -107,7 +109,10 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
                 </button>
               </div>
               <FaHeart
-                onClick={() => toggleLike(item.id)}
+                onClick={() => {
+                  const currentQty = count[item.id] ?? 1;
+                  toggleLike(item.id); addToWishStore(item,currentQty);
+                }}
                 className={`w-[30px] h-[30px] cursor-pointer transition ${
                   liked[item.id]
                     ? "text-red-800 stroke-none"
