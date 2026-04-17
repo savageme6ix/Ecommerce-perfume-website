@@ -13,7 +13,8 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
   const [isAdded, setisAdded] = useState<Record<number, string>>({});
   const [liked, setLiked] = useState<Record<number, boolean>>({});
   const [animating, setAnimating] = useState<Record<number, boolean>>({});
-  const {addToWishStore} = usewishStore();
+  const [notif, setNotif] = useState<string | null>(null);
+  const { addToWishStore, removeFromWishStore } = usewishStore();
 
   function toggleLike(id: number): void {
     setLiked((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -110,9 +111,22 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
               </div>
               <FaHeart
                 onClick={() => {
-                  const currentQty = count[item.id] ?? 1;
-                  toggleLike(item.id); addToWishStore(item,currentQty);
-                }}
+                const currentQty = count[item.id] ?? 1;
+                const isCurrentlyLiked = liked[item.id];
+
+                toggleLike(item.id);
+
+                if (isCurrentlyLiked) {
+                  setNotif("Removed from wishlist");
+                  removeFromWishStore(item.id)
+                } else {
+                  addToWishStore(item, currentQty);
+                  setNotif("Added to wishlist");
+                }
+
+                setTimeout(() => setNotif(null), 1500);
+              }}
+
                 className={`w-[30px] h-[30px] cursor-pointer transition ${
                   liked[item.id]
                     ? "text-red-800 stroke-none"
@@ -131,6 +145,11 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
           View Full Collection
         </Link>
       </div>
+      {notif && (
+        <div className="fixed bottom-6 right-6 bg-black text-white px-6 py-3 rounded-full shadow-lg animate-in fade-in slide-in-from-bottom-5">
+          {notif}
+        </div>
+      )}
     </section>
   );
 };
