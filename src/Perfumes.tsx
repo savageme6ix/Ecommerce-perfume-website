@@ -3,12 +3,13 @@ import { useState, useEffect } from "react";
 import type { Perfume } from "./types";
 import Navbar from "./Navbar";
 import { useCartStore } from "./store/useCartStore";
+import { useRef } from "react";
 
 const Perfumes = () => {
   const [perfumes, setPerfumes] = useState<Perfume[]>([]);
-  // Local state for UI feedback
   const [count, setCount] = useState<Record<number, number>>({});
   const [isAdded, setIsAdded] = useState<Record<number, string>>({});
+  const timeoutRefs = useRef<{ [key: number]:  ReturnType<typeof setTimeout> }>({});
 
   const addToCart = useCartStore((state) => state.addToCart);
 
@@ -22,12 +23,19 @@ const Perfumes = () => {
   }, []);
 
   // UI Helper functions
-  function handleAddedFeedback(id: number) {
-    setIsAdded((prev) => ({ ...prev, [id]: "Added" }));
-    setTimeout(() => {
-      setIsAdded((prev) => ({ ...prev, [id]: "Add to cart" }));
-    }, 1000);
+function handleAddedFeedback(id: number) {
+  // 1. Clear any existing timer for this specific ID
+  if (timeoutRefs.current[id]) {
+    clearTimeout(timeoutRefs.current[id]);
   }
+  setIsAdded((prev) => ({ ...prev, [id]: "Added" }));
+
+  // 3. Start a new timer and store its reference
+  timeoutRefs.current[id] = setTimeout(() => {
+    setIsAdded((prev) => ({ ...prev, [id]: "Add to cart" }));
+    delete timeoutRefs.current[id]; // Clean up ref
+  }, 1000);
+}
 
   function increaseCount(id: number) {
     setCount((prev) => ({ ...prev, [id]: (prev[id] ?? 1) + 1 }));
