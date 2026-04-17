@@ -4,6 +4,7 @@ import Wishlist from './Wishlist';
 import Perfumes from './Perfumes';
 import Cart from './Cart';
 import Checkout from './Checkout';
+import About from './About';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/perfumes" element={<Perfumes />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<Checkout />} />
+        <Route path="/about" element={<About />} />
       </Routes>
      </BrowserRouter>
     </div>
