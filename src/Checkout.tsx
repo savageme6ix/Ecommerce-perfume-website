@@ -9,9 +9,12 @@ const Checkout = () => {
     setLoading(true)
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+
     const grandTotal = cart.reduce((acc, item) => {
         return acc + (item.price * item.quantity);
     }, 0);
+
+     const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
     const orderData = {
       customer: formData.get("customer") as string,
@@ -19,6 +22,7 @@ const Checkout = () => {
       phone: formData.get("phone") as string,
       location: formData.get("location") as string,
       total_amount: grandTotal,
+      total_items: totalItems,
       items: cart.map((item) => ({
         id: item.id,
         name: item.name,
