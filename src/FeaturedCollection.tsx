@@ -100,8 +100,8 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
                 onClick={() => setLiked(!liked)}
                 className={`w-[30px] h-[30px] cursor-pointer transition ${
                   liked
-                    ? "fill-red-600 stroke-none"
-                    : "fill-gray-400 hover:fill-red-500 stroke-none"
+                    ? "fill-red-800 stroke-none"
+                    : "fill-gray-400 hover:fill-red-650 stroke-none"
                 }`}
               />
             </div>
