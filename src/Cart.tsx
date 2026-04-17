@@ -98,7 +98,9 @@ const Cart = () => {
               <span>{grandTotal.toLocaleString()}</span>
             </div>
             <p className="text-sm font-semibold">Taxes and duties included.</p>
-            <Link to="/checkout" className="w-full mt-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition">Checkout</Link>
+            <button className="w-full mt-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition">
+            <Link to="/checkout">Checkout</Link>
+            </button>
             <button
               className="w-full px-6 py-3 mt-3 rounded-full transition bg-red-700 text-white hover:bg-red-800"
               onClick={() => setShowConfirm(true)} 
