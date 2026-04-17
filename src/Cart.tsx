@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
 import { useState } from "react";
 import { useCartStore } from "./store/useCartStore";
+import { Link } from "react-router-dom";
 const Cart = () => {
 
   const { cart, updateQuantity, removeFromCart, clearCart } = useCartStore();
@@ -97,7 +98,7 @@ const Cart = () => {
               <span>{grandTotal.toLocaleString()}</span>
             </div>
             <p className="text-sm font-semibold">Taxes and duties included.</p>
-            <button className="w-full mt-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition">Checkout</button>
+            <Link to="/checkout" className="w-full mt-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition">Checkout</Link>
             <button
               className="w-full px-6 py-3 mt-3 rounded-full transition bg-red-700 text-white hover:bg-red-800"
               onClick={() => setShowConfirm(true)} 
