@@ -10,7 +10,7 @@ interface FeaturedCollectionProps {
 const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
   const [count, setCount] = useState<Record<number, number>>({});
   const [isAdded, setisAdded] = useState<Record<number, string>>({});
-  const [liked, setLiked] = useState(false);
+  const [liked, setLiked] = useState<Record<number,boolean>>({});
 
   const addToCart = useCartStore((state) => state.addToCart);
 
