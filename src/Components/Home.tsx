@@ -3,8 +3,8 @@ import Footer from "./Footer";
 import Navbar from "./Navbar";
 import Testimonials from "./Testimonials";
 import { useEffect, useState } from 'react';
-import { supabase } from './lib/supabase';
-import type { Perfume } from "./types";
+import { supabase } from '../lib/supabase';
+import type { Perfume } from "../types";
 
 const Home = () => {
 

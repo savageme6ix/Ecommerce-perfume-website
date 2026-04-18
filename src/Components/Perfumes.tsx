@@ -1,11 +1,11 @@
-import { supabase } from "./lib/supabase";
+import { supabase } from "../lib/supabase";
 import { useState, useEffect } from "react";
-import type { Perfume } from "./types";
+import type { Perfume } from "../types";
 import Navbar from "./Navbar";
-import { useCartStore } from "./store/useCartStore";
+import { useCartStore } from "../store/useCartStore";
 import { useRef } from "react";
 import { FaHeart } from "react-icons/fa";
-import { usewishStore } from "./store/useWishStore";
+import { usewishStore } from "../store/useWishStore";
 
 const Perfumes = () => {
   const [perfumes, setPerfumes] = useState<Perfume[]>([]);

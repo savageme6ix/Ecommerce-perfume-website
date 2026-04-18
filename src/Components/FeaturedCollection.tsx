@@ -1,9 +1,9 @@
 import { useState } from "react";
-import type { Perfume } from "./types";
-import { useCartStore } from "./store/useCartStore";
+import type { Perfume } from "../types";
+import { useCartStore } from "../store/useCartStore";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
-import { usewishStore } from "./store/useWishStore";
+import { usewishStore } from "../store/useWishStore";
 import { useRef } from "react";
 
 interface FeaturedCollectionProps {

@@ -1,6 +1,6 @@
 import Navbar from "./Navbar";
-import { supabase } from "./lib/supabase";
-import { useCartStore } from "./store/useCartStore";
+import { supabase } from "../lib/supabase";
+import { useCartStore } from "../store/useCartStore";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

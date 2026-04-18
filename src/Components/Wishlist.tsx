@@ -1,6 +1,6 @@
 import Navbar from "./Navbar";
-import { usewishStore } from "./store/useWishStore";
-import { useCartStore } from "./store/useCartStore";
+import { usewishStore } from "../store/useWishStore";
+import { useCartStore } from "../store/useCartStore";
 
 const Wishlist = () => {
   const { wish, updateQuantity, removeFromWishStore } = usewishStore();
