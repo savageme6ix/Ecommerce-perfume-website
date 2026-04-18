@@ -80,6 +80,8 @@ function handleAddedFeedback(id: number) {
                   className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                 />
               </div>
+              
+             
 
               <h3 className="font-medium text-lg">{perfume.name}</h3>
               <p className="text-gray-500 text-sm mb-1">{perfume.brand}</p>
