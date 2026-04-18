@@ -50,13 +50,16 @@ const SearchBar = ({
           onClick={handleSearch}
           disabled={disabled}
           className="
-            px-5 sm:px-8 
-            bg-black text-white 
-            text-sm sm:text-base 
-            hover:bg-gray-800 
-            transition
-            disabled:cursor-not-allowed disabled:hover:bg-black
-          "
+    flex items-center justify-center
+    px-4 sm:px-6 
+    min-w-[80px] sm:min-w-[100px]
+    bg-black text-white 
+    text-xs sm:text-sm md:text-base 
+    whitespace-nowrap
+    hover:bg-gray-800 
+    transition
+    disabled:cursor-not-allowed disabled:hover:bg-black
+  "
         >
           Search
         </button>

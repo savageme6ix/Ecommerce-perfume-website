@@ -24,7 +24,7 @@ const Home = () => {
   }, []);
 
   return (
-    <main className="bg-[#F5F5F0]">
+    <main className="bg-[#F5F5F0] w-full">
       <Navbar />
       <div className="w-full h-[600px] relative flex items-center justify-center overflow-hidden bg-[#F5F5F0] mt-0.5">
         
