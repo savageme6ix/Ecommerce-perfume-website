@@ -5,7 +5,7 @@ const Navbar = () => {
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#F5F5F0] shadow-sm font-body px-4 py-4 sm:px-6">
+    <nav className="sticky top-0 z-50 bg-[#F5F5F0] shadow-sm font-body px-5 py-6 sm:px-6">
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
         {/* Logo / Home */}
         <Link
