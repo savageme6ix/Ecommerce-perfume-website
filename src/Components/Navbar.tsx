@@ -16,7 +16,7 @@ const Navbar = () => {
         </Link>
 
         {/* Links */}
-        <div className="flex justify-center sm:justify-end gap-4 sm:gap-8 text-sm sm:text-base flex-wrap">
+        <div className="flex justify-center sm:justify-end gap-4 sm:gap-8 sm:text-base flex-wrap">
           <Link
             to="/perfumes"
             className="hover:text-gray-600 transition tracking-widest"
