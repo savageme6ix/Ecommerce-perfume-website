@@ -1,6 +1,7 @@
 import Navbar from "./Navbar";
 import { usewishStore } from "../store/useWishStore";
 import { useCartStore } from "../store/useCartStore";
+import { PerfumeDescriptionHint } from "./PerfumeDescriptionHint";
 
 const Wishlist = () => {
   const { wish, updateQuantity, removeFromWishStore } = usewishStore();
@@ -30,11 +31,17 @@ const Wishlist = () => {
               className="bg-white rounded-2xl shadow-md p-6 flex flex-col md:flex-row gap-6 items-center md:items-start"
             >
               {/* Image */}
-              <div className="w-[150px] h-[150px] overflow-hidden rounded-xl">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
+              <div className="relative h-[150px] w-[150px] shrink-0 self-center md:self-start">
+                <div className="h-full w-full overflow-hidden rounded-xl">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-110"
+                  />
+                </div>
+                <PerfumeDescriptionHint
+                  description={item.description}
+                  className="top-1.5 right-1.5"
                 />
               </div>
 

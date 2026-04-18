@@ -9,6 +9,7 @@ interface CartItem {
   image: string;
   price: number;
   quantity: number;
+  description?: string;
 }
 
 // Define the Store's structure (State + Actions)

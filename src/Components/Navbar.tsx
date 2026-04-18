@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { useCartStore } from './store/useCartStore';
+import { useCartStore } from "../store/useCartStore";
 const Navbar = () => {
   const cart = useCartStore((state) => state.cart);
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);

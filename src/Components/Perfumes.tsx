@@ -6,6 +6,7 @@ import { useCartStore } from "../store/useCartStore";
 import { useRef } from "react";
 import { FaHeart } from "react-icons/fa";
 import { usewishStore } from "../store/useWishStore";
+import { PerfumeDescriptionHint } from "./PerfumeDescriptionHint";
 
 const Perfumes = () => {
   const [perfumes, setPerfumes] = useState<Perfume[]>([]);
@@ -71,8 +72,15 @@ function handleAddedFeedback(id: number) {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {perfumes.map((perfume) => (
-            <div key={perfume.id} className="bg-white p-4 rounded-2xl shadow hover:shadow-lg transition flex flex-col">
-              
+            <div
+              key={perfume.id}
+              className="relative bg-white p-4 rounded-2xl shadow hover:shadow-lg transition flex flex-col"
+            >
+              <PerfumeDescriptionHint
+                description={perfume.description}
+                className="top-3 right-3"
+              />
+
               <div className="w-full h-[220px] sm:h-[240px] md:h-[250px] overflow-hidden rounded-xl mb-4">
                 <img
                   src={perfume.image}

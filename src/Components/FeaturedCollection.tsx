@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import type { Perfume } from "../types";
 import { useCartStore } from "../store/useCartStore";
 import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { usewishStore } from "../store/useWishStore";
-import { useRef } from "react";
+import { PerfumeDescriptionHint } from "./PerfumeDescriptionHint";
 
 interface FeaturedCollectionProps {
   perfumes: Perfume[];
@@ -12,7 +12,6 @@ interface FeaturedCollectionProps {
 const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
   const [count, setCount] = useState<Record<number, number>>({});
   const [isAdded, setisAdded] = useState<Record<number, string>>({});
-  const [liked, setLiked] = useState<Record<number, boolean>>({});
   const [animating, setAnimating] = useState<Record<number, boolean>>({});
   const [notif, setNotif] = useState<string | null>(null);
   const { addToWishStore, removeFromWishStore , wish} = usewishStore();
@@ -21,7 +20,6 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
   const isLiked = (id:number) => wish.some((w) => w.id === id);
 
   function toggleLike(id: number): void {
-    setLiked((prev) => ({ ...prev, [id]: !prev[id] }));
     setAnimating((prev) => ({ ...prev, [id]: true }));
 
     setTimeout(() => {
@@ -70,8 +68,12 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
         {perfumes.slice(0, 3).map((item) => (
           <div
             key={item.id}
-            className="bg-white p-4 rounded-2xl shadow hover:shadow-lg transition"
+            className="relative bg-white p-4 rounded-2xl shadow hover:shadow-lg transition"
           >
+            <PerfumeDescriptionHint
+              description={item.description}
+              className="top-3 right-3"
+            />
             <div className="w-full h-[250px] overflow-hidden rounded-xl mb-4">
               <img
                 src={item.image}

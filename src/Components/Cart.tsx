@@ -61,7 +61,11 @@ const Cart = () => {
               cart.map((item) => (
                 <div key={item.id} className="bg-white rounded-2xl shadow-md p-6 flex gap-6 items-center">
                   <div className="w-[120px] h-[120px] overflow-hidden rounded-xl">
-                    <img src={item.image} className="w-full h-full object-cover" />
+                    <img
+                      src={item.image}
+                      className="w-full h-full object-cover"
+                      alt={item.name}
+                    />
                   </div>
                   <div className="flex flex-col gap-2">
                     <h3 className="font-medium">{item.name}</h3>

@@ -5,4 +5,6 @@ export interface Perfume{
     price:number;
     image:string;
     quantiy:number;
+    /** Shown in product card hint (Supabase / API) */
+    description?: string;
   }
