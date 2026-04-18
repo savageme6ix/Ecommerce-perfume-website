@@ -116,7 +116,7 @@ const Cart = () => {
             <h2 className="text-xl font-semibold mb-6">Order Summary</h2>
             <div className="flex justify-between text-gray-600 mb-2">
               <span>Subtotal</span>
-              <span>{subtotal.toLocaleString()}</span>
+              <span>${subtotal.toLocaleString()}</span>
             </div>
             <div className="flex justify-between text-gray-600 mb-4">
               <span>Shipping</span>
@@ -124,7 +124,7 @@ const Cart = () => {
             </div>
             <div className="border-t pt-4 flex justify-between font-semibold text-lg">
               <span>Total</span>
-              <span>{grandTotal.toLocaleString()}</span>
+              <span>${grandTotal.toLocaleString()}</span>
             </div>
             <p className="text-sm font-semibold">Taxes and duties included.</p>
             <button className="w-full mt-6 py-3 bg-black text-white rounded-full hover:bg-gray-800 transition">
