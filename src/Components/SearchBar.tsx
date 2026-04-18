@@ -56,6 +56,7 @@ const SearchBar = ({
     bg-black text-white 
     text-xs sm:text-sm md:text-base 
     whitespace-nowrap
+    rounded-r-full
     hover:bg-gray-800 
     transition
     disabled:cursor-not-allowed disabled:hover:bg-black
