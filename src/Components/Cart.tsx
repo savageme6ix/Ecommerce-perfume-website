@@ -78,29 +78,29 @@ const Cart = () => {
                   <div className="flex flex-col gap-2 w-full">
                     <h3 className="font-medium">{item.name}</h3>
                     <p className="text-sm text-gray-500">Brand: {item.brand}</p>
-                    <div className="flex items-center justify-evenly gap-5">
-                      <div className="flex items-center gap-3 mt-2">
-                        <button
-                          onClick={() => updateQuantity(item.id, -1)}
-                          className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300"
-                        >
-                          -
-                        </button>
-                        <span className="font-medium">{item.quantity}</span>
-                        <button
-                          onClick={() => updateQuantity(item.id, 1)}
-                          className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300"
-                        >
-                          +
-                        </button>
-                      </div>
+
+                    <div className="flex items-center gap-3 mt-2">
                       <button
-                        className="px-6 py-3 mt-3 rounded-full transition w-[120px] h-[50px] bg-black text-white hover:bg-gray-800"
+                        onClick={() => updateQuantity(item.id, -1)}
+                        className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300"
+                      >
+                        -
+                      </button>
+                      <span className="font-medium">{item.quantity}</span>
+                      <button
+                        onClick={() => updateQuantity(item.id, 1)}
+                        className="w-8 h-8 rounded-full bg-gray-200 hover:bg-gray-300"
+                      >
+                        +
+                      </button>
+                      <button
+                        className="px-6 py-2 rounded-full bg-black text-white hover:bg-gray-800 transition"
                         onClick={() => removeFromCart(item.id)}
                       >
                         Remove
                       </button>
                     </div>
+
                     <p className="font-semibold mt-2">
                       ${item.price * item.quantity}
                     </p>
