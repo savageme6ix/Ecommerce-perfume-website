@@ -21,7 +21,7 @@ export function PerfumeDescriptionHint({
     >
       <button
         type="button"
-        className="flex h-7 w-7 items-center justify-center rounded-full border border-stone-300/90 bg-white/95 text-[12px] font-serif leading-none text-stone-600 shadow-sm backdrop-blur-[2px] transition-all duration-200 hover:border-stone-800 hover:bg-[#F5F5F0] hover:text-stone-900 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-800/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+        className="flex h-7 w-7 items-center justify-center rounded-full border border-stone-300/90 bg-white/95 text-[12px] leading-none text-stone-600 shadow-sm backdrop-blur-[2px] transition-all duration-200 hover:border-stone-800 hover:bg-[#F5F5F0] hover:text-stone-900 hover:shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-stone-800/40 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
         aria-label="About this fragrance"
         aria-describedby={tooltipId}
       >
