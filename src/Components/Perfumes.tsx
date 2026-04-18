@@ -7,9 +7,13 @@ import { useRef } from "react";
 import { FaHeart } from "react-icons/fa";
 import { usewishStore } from "../store/useWishStore";
 import { PerfumeDescriptionHint } from "./PerfumeDescriptionHint";
+import SearchBar from "./SearchBar";
+import { PageLoading } from "./PageLoading";
 
 const Perfumes = () => {
-  const [perfumes, setPerfumes] = useState<Perfume[]>([]);
+  const [allPerfumes, setAllPerfumes] = useState<Perfume[]>([]);
+  const [displayPerfumes, setDisplayPerfumes] = useState<Perfume[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [count, setCount] = useState<Record<number, number>>({});
   const [isAdded, setIsAdded] = useState<Record<number, string>>({});
   const [animating, setAnimating] = useState<Record<number, boolean>>({});
@@ -30,24 +34,39 @@ const Perfumes = () => {
 
   useEffect(() => {
     const fetchPerfumes = async () => {
+      setIsLoading(true);
       const { data, error } = await supabase.from("Perfumes").select("*");
-      if (data) setPerfumes(data);
+      setIsLoading(false);
+      if (data) {
+        setAllPerfumes(data);
+        setDisplayPerfumes(data);
+      }
       if (error) console.error("Error fetching:", error);
     };
     fetchPerfumes();
   }, []);
 
-function handleAddedFeedback(id: number) {
-  if (timeoutRefs.current[id]) {
-    clearTimeout(timeoutRefs.current[id]);
+  function handleSearch(query: string) {
+    if (!query) {
+      setDisplayPerfumes(allPerfumes);
+      return;
+    }
+    setDisplayPerfumes(
+      allPerfumes.filter((p) => p.name.toLowerCase().includes(query)),
+    );
   }
-  setIsAdded((prev) => ({ ...prev, [id]: "Added" }));
 
-  timeoutRefs.current[id] = setTimeout(() => {
-    setIsAdded((prev) => ({ ...prev, [id]: "Add to cart" }));
-    delete timeoutRefs.current[id];
-  }, 1000);
-}
+  function handleAddedFeedback(id: number) {
+    if (timeoutRefs.current[id]) {
+      clearTimeout(timeoutRefs.current[id]);
+    }
+    setIsAdded((prev) => ({ ...prev, [id]: "Added" }));
+
+    timeoutRefs.current[id] = setTimeout(() => {
+      setIsAdded((prev) => ({ ...prev, [id]: "Add to cart" }));
+      delete timeoutRefs.current[id];
+    }, 1000);
+  }
 
   function increaseCount(id: number) {
     setCount((prev) => ({ ...prev, [id]: (prev[id] ?? 1) + 1 }));
@@ -70,8 +89,23 @@ function handleAddedFeedback(id: number) {
           <h1 className="text-3xl md:text-4xl font-semibold">Explore Our Perfumes</h1>
         </div>
 
+        <SearchBar
+          onSearch={handleSearch}
+          placeholder="Search by name"
+          disabled={isLoading}
+        />
+
+        {isLoading ? (
+          <PageLoading message="Loading perfumes…" />
+        ) : displayPerfumes.length === 0 ? (
+          <p className="text-center text-gray-600 py-12">
+            {allPerfumes.length === 0
+              ? "No perfumes available right now. Please check back soon."
+              : "No perfumes match your search. Try another name or clear the search."}
+          </p>
+        ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {perfumes.map((perfume) => (
+          {displayPerfumes.map((perfume) => (
             <div
               key={perfume.id}
               className="relative bg-white p-4 rounded-2xl shadow hover:shadow-lg transition flex flex-col"
@@ -153,6 +187,7 @@ function handleAddedFeedback(id: number) {
             </div>
           ))}
         </div>
+        )}
       </section>
 
       {notif && (

@@ -12,8 +12,9 @@ const Checkout = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    setLoading(true);
     e.preventDefault();
+    setLoading(true);
+
     const formData = new FormData(e.currentTarget);
 
     const grandTotal = cart.reduce((acc, item) => {
@@ -39,19 +40,24 @@ const Checkout = () => {
 
     if (!orderData.customer || !orderData.email) {
       alert("Please fill in required fields");
+      setLoading(false);
       return;
     }
 
     const { error } = await supabase.from("Orders").insert([orderData]);
-    if (error) console.error("Checkout failed:", error.message);
-    else {
-      setLoading(false);
-      setShowToast(true);
-      useCartStore.getState().clearCart();
-      setTimeout(()=>{
-          navigate('/')
-      },3000)
+    setLoading(false);
+
+    if (error) {
+      console.error("Checkout failed:", error.message);
+      alert("Checkout failed. Please try again.");
+      return;
     }
+
+    setShowToast(true);
+    useCartStore.getState().clearCart();
+    setTimeout(() => {
+      navigate("/");
+    }, 3000);
   };
 
   return (
@@ -98,6 +104,16 @@ const Checkout = () => {
 
       <section className="bg-[#F5F5F0] min-h-screen px-6 md:px-12 lg:px-20 py-12 flex justify-center">
         <div className="w-full max-w-4xl bg-white rounded-3xl shadow-lg p-8 md:p-12">
+          {loading && (
+            <div
+              className="mb-6 rounded-2xl border border-stone-200 bg-[#F5F5F0] px-4 py-3 text-center text-sm font-medium tracking-wide text-stone-700"
+              role="status"
+              aria-live="polite"
+            >
+              Placing your order…
+            </div>
+          )}
+
           {/* Heading */}
           <div className="mb-10 text-center">
             <h1 className="text-3xl md:text-4xl font-semibold mb-2">
