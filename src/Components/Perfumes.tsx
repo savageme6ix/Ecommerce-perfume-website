@@ -8,7 +8,8 @@ import { FaHeart } from "react-icons/fa";
 import { usewishStore } from "../store/useWishStore";
 import { PerfumeDescriptionHint } from "./PerfumeDescriptionHint";
 import SearchBar from "./SearchBar";
-import { PageLoading } from "./PageLoading";
+import { PageLoading } from "./PageLoading"; 
+import {motion} from "framer-motion";
 
 const Perfumes = () => {
   const [allPerfumes, setAllPerfumes] = useState<Perfume[]>([]);
