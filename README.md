@@ -1,4 +1,8 @@
-## 6ix Essence – Premium Perfume E-commerceA modern, full-stack e-commerce application for a premium fragrance collection. This project focuses on a seamless user experience, high-performance state management, and a cloud-integrated backend
+## 6ix Essence 
+– Premium Perfume E-commerce modern, 
+full-stack e-commerce application for a premium fragrance collection. 
+This project focuses on a seamless user experience, high-performance state management, 
+and a cloud-integrated backend
 
 .## 🚀 Key Features
 
@@ -27,26 +31,6 @@ TypeScript -- Type Safety & Scalability
 
 <img width="651" height="181" alt="image" src="https://github.com/user-attachments/assets/399cea0a-283d-4728-b427-b65655f1e7bb" />
 
-
-## ⚙️ Installation & Setup
-
-Clone the repository:
-
-Bashgit clone https://github.com/your-username/6ix-essence.git
-
-cd 6ix-essence
-
-Install dependencies:Bashnpm install
-
-Environment Variables:
-
-Create a .env file in the root and add your Supabase credentials:
-
-VITE_SUPABASE_URL=your_supabase_url
-
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-
-Run the development server: -Bashnpm run dev
 
 ## 📈 Future Roadmap
 
