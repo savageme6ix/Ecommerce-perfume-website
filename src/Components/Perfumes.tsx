@@ -106,7 +106,20 @@ const Perfumes = () => {
           </p>
         ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {displayPerfumes.map((perfume) => (
+          {displayPerfumes.map((perfume,index) => (
+            <motion.div
+              key={perfume.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ 
+              duration: 0.5, 
+              delay: index * 0.1, 
+              ease: "easeOut" 
+            }}
+            className="relative bg-white p-4 rounded-2xl shadow hover:shadow-lg transition flex flex-col"
+            >
+
             <div
               key={perfume.id}
               className="relative bg-white p-4 rounded-2xl shadow hover:shadow-lg transition flex flex-col"
@@ -186,6 +199,7 @@ const Perfumes = () => {
                 </div>
               </div>
             </div>
+            </motion.div>
           ))}
         </div>
         )}
