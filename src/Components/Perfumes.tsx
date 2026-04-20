@@ -117,6 +117,7 @@ const Perfumes = () => {
               delay: index * 0.1, 
               ease: "easeOut" 
             }}
+            whileHover={{ scale: 1.02 }}
             className="relative bg-white p-4 rounded-2xl shadow hover:shadow-lg transition flex flex-col"
             >
 
