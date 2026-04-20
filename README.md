@@ -1,73 +1,46 @@
-# React + TypeScript + Vite
+## 6ix Essence 
+– Premium Perfume E-commerce modern, 
+full-stack e-commerce application for a premium fragrance collection. 
+This project focuses on a seamless user experience, high-performance state management, 
+and a cloud-integrated backend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+.## 🚀 Key Features
 
-Currently, two official plugins are available:
+Real-time Product Sync: Fetches perfume collections directly from Supabase Database.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Wishlist & Cart Management: High-performance state management using Zustand with LocalStorage persistence (your cart stays even if you refresh).
 
-## React Compiler
+Responsive UI: Fully optimized for mobile, tablet, and desktop using Tailwind CSS.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Visual Feedback: Interactive UI elements including "Add to Cart" animations and wishlist toast notifications.
 
-## Expanding the ESLint configuration
+Cloud Image Hosting: Optimized image delivery via Supabase Storage.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech StackTechnology
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+React -- (Vite)Frontend Framework
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Supabase -- Backend-as-a-Service (Database & Storage)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Zustand -- Global State Management
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Tailwind -- CSSStyling & Responsiveness
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+TypeScript -- Type Safety & Scalability
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+
+<img width="651" height="181" alt="image" src="https://github.com/user-attachments/assets/399cea0a-283d-4728-b427-b65655f1e7bb" />
+
+
+## 📈 Future Roadmap
+
+[ ] User Authentication: Implementing Supabase Auth for personalized accounts.
+
+[ ] Checkout Integration: Adding Stripe for secure payments.
+
+[ ] Search & Filtering: Advanced filtering by brand, price, and scent notes.
+
+## 💡 Professional Takeaways
+
+This project allowed me to master asynchronous data fetching and persistent global state.
+By moving from local assets to Supabase Storage, I learned how to manage cloud infrastructure to improve application load times and scalability.
