@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { usewishStore } from "../store/useWishStore";
 import { PerfumeDescriptionHint } from "./PerfumeDescriptionHint";
+import { motion } from "framer-motion";
 
 interface FeaturedCollectionProps {
   perfumes: Perfume[];
 }
+
 const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
   const [count, setCount] = useState<Record<number, number>>({});
   const [isAdded, setisAdded] = useState<Record<number, string>>({});
@@ -35,7 +37,7 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
     setisAdded((prev) => ({ ...prev, [id]: "Added" }));
     timeoutRefs.current[id] = setTimeout(() => {
       setisAdded((prev) => ({ ...prev, [id]: "Add to cart" }));
-      delete timeoutRefs.current[id]; // Clean up ref
+      delete timeoutRefs.current[id]; 
     }, 1000);
   }
 
@@ -50,23 +52,42 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
     });
   }
 
+  const titleWords = "Discover Your Signature Scent".split(" ");
+
   return (
-    <section className="py-16 bg-[#F5F5F0] text-center">
+    <section className="py-16 bg-[#F5F5F0] text-center overflow-hidden">
       <p className="text-sm tracking-widest text-gray-500 mb-2">
         OUR COLLECTION
       </p>
-      <h2 className="text-3xl md:text-4xl font-semibold mb-6">
-        Discover Your Signature Scent
+      
+      <h2 className="text-3xl md:text-4xl font-semibold mb-6 flex justify-center gap-2 overflow-hidden">
+        {titleWords.map((word, i) => (
+          <motion.span
+            key={i}
+            initial={{ y: "100%" }}
+            whileInView={{ y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: i * 0.1 }}
+            className="inline-block"
+          >
+            {word}
+          </motion.span>
+        ))}
       </h2>
-      <p className="max-w-[500px] mx-auto text-gray-600 mb-12">
+
+      <p className="max-w-[500px] mx-auto text-gray-600 mb-12 px-6">
         A curated selection of our most loved fragrances — crafted to elevate
         your everyday presence.
       </p>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-6">
-        {perfumes.slice(0, 3).map((item) => (
-          <div
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-6 max-w-7xl mx-auto">
+        {perfumes.slice(0, 3).map((item, index) => (
+          <motion.div
             key={item.id}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
             className="relative bg-white p-4 rounded-2xl shadow hover:shadow-lg transition flex flex-col"
           >
             <PerfumeDescriptionHint
@@ -85,7 +106,6 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
             <p className="text-gray-800 font-semibold mb-3">${item.price}</p>
 
             <div className="mt-auto flex flex-col gap-3">
-              {/* Quantity Controls */}
               <div className="flex items-center justify-center gap-4 bg-gray-50 py-2 rounded-full w-full">
                 <button
                   onClick={() => decreaseCount(item.id)}
@@ -111,7 +131,6 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
                   }`}
                   onClick={() => {
                     const currentQty = count[item.id] ?? 1;
-                    // Pass both the item AND the chosen quantity to the store
                     addToCart(item, currentQty);
                     added(item.id);
                     setCount((prev) => ({ ...prev, [item.id]: 1 }));
@@ -135,13 +154,13 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
                   }}
                   className={`w-[30px] h-[30px] cursor-pointer transition ${
                     isLiked(item.id)
-                      ? "text-red-800 stroke-none"
-                      : "text-gray-400 hover:text-red-650 stroke-none"
+                      ? "text-red-800"
+                      : "text-gray-400 hover:text-red-650"
                   } ${animating[item.id] ? "animate-pop" : ""}`}
                 />
               </div>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
@@ -155,7 +174,7 @@ const FeaturedCollection = ({ perfumes }: FeaturedCollectionProps) => {
       </div>
 
       {notif && (
-        <div className="fixed bottom-6 right-6 bg-black text-white px-6 py-3 rounded-full shadow-lg animate-in fade-in slide-in-from-bottom-5">
+        <div className="fixed bottom-6 right-6 bg-black text-white px-6 py-3 rounded-full shadow-lg z-50">
           {notif}
         </div>
       )}
