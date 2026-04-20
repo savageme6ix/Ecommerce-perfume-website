@@ -51,7 +51,7 @@ const SearchBar = ({
           disabled={disabled}
           className="
     flex items-center justify-center
-    px-4 sm:px-6 
+    px-5 sm:px-6 
     min-w-[80px] sm:min-w-[100px]
     bg-black text-white 
     text-xs sm:text-sm md:text-base 
